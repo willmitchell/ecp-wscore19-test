@@ -13,8 +13,4 @@
       <Content Include=".github\workflows\docker-image.yml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="scripts" />
-    </ItemGroup>
-
 </Project>
