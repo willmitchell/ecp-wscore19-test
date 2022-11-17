@@ -16,4 +16,4 @@ RUN dotnet publish -r win-x64 "ecp-wscore19-test.csproj" -c Release -o /app/publ
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["pwsh"]
+ENTRYPOINT ["powershell"]
