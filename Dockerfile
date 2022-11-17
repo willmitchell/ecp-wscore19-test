@@ -1,6 +1,5 @@
 ﻿FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS base
 WORKDIR /app
-
 RUN "powershell -c Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0 -Online; Install-WindowsFeature -Name 'RSAT-AD-PowerShell' -IncludeAllSubFeature"
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
@@ -17,5 +16,4 @@ RUN dotnet publish -r win-x64 "ecp-wscore19-test.csproj" -c Release -o /app/publ
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["ecp-wscore19-test.exe"]
 ENTRYPOINT ["pwsh"]
