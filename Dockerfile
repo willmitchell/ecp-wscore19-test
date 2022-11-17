@@ -1,6 +1,7 @@
 ﻿FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS base
 WORKDIR /app
-RUN "Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0 -Online; Install-WindowsFeature -Name 'RSAT-AD-PowerShell' -IncludeAllSubFeature"
+
+RUN "powershell -c Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0 -Online; Install-WindowsFeature -Name 'RSAT-AD-PowerShell' -IncludeAllSubFeature"
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
