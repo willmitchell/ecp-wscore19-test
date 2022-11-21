@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS base
+﻿FROM mcr.microsoft.com/windows/server:ltsc2019 AS base
 WORKDIR /app
 RUN "powershell -c Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0 -Online; Install-WindowsFeature -Name 'RSAT-AD-PowerShell' -IncludeAllSubFeature"
 RUN "powershell -c Invoke-WebRequest -Uri https://s3.amazonaws.com/aws-cli/AWSCLI64.msi -OutFile C:\AWSCLI64.msi; Start-Process msiexec.exe -Wait -ArgumentList '/i', 'C:\AWSCLI64.msi', '/qn', '/norestart'"
